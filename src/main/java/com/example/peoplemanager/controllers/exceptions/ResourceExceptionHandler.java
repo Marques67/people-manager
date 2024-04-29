@@ -1,7 +1,6 @@
 package com.example.peoplemanager.controllers.exceptions;
 
 import com.example.peoplemanager.services.exceptions.ResourceNotFoundException;
-import com.example.peoplemanager.utils.UtilData;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
