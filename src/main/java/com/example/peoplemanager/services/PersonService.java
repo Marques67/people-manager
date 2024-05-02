@@ -5,7 +5,9 @@ import com.example.peoplemanager.dto.PersonDTO;
 import com.example.peoplemanager.entities.Address;
 import com.example.peoplemanager.entities.Person;
 import com.example.peoplemanager.repositories.PersonRepository;
+import com.example.peoplemanager.services.exceptions.MultipleMainAdressesException;
 import com.example.peoplemanager.services.exceptions.ResourceNotFoundException;
+import com.example.peoplemanager.utils.UtilAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,7 +68,12 @@ public class PersonService {
         person.setFullName(personDTO.getFullName());
         person.setBirthday(personDTO.getBirthday());
 
-        person.getAddress().clear();
+        boolean haveMainAddress = validateMainAddress(personDTO);
+
+        if (haveMainAddress) {
+            UtilAddress.updateMainAddress(person);
+        }
+
         for (AddressDTO addressDTO : personDTO.getAddress()) {
             Address address = new Address();
             address.setStreet(addressDTO.getStreet());
@@ -75,7 +82,23 @@ public class PersonService {
             address.setCity(addressDTO.getCity());
             address.setState(addressDTO.getState());
             address.setPerson(person);
+            address.setMain(addressDTO.getMain());
             person.getAddress().add(address);
         }
+    }
+
+    private boolean validateMainAddress(PersonDTO personDTO) {
+        List<AddressDTO> addressList = personDTO.getAddress();
+        int isMain = 0;
+
+        for (AddressDTO addressDTO :  addressList) {
+            if (addressDTO.getMain()) {
+                isMain++;
+            }
+        }
+
+        if (isMain > 1) {
+            throw new MultipleMainAdressesException("Multiple main addresses found. Only one main address is allowed.");
+        } else return isMain == 1;
     }
 }

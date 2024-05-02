@@ -27,6 +27,8 @@ public class Address implements Serializable {
     @JoinColumn(name = "person_id")
     private Person person;
 
+    private boolean isMain;
+
     public Long getId() {
         return id;
     }
@@ -81,6 +83,14 @@ public class Address implements Serializable {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public boolean getMain() {
+        return isMain;
+    }
+
+    public void setMain(boolean main) {
+        isMain = main;
     }
 
     @Override

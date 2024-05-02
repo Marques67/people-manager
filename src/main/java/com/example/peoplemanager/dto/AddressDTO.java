@@ -22,15 +22,18 @@ public class AddressDTO implements Serializable {
 
     private PersonDTO personDTO;
 
+    private boolean isMain;
+
     public AddressDTO() {}
 
-    public AddressDTO(Long id, String street, String cep, Integer number, String city, String state) {
+    public AddressDTO(Long id, String street, String cep, Integer number, String city, String state, Boolean isMain) {
         this.id = id;
         this.street = street;
         this.cep = cep;
         this.number = number;
         this.city = city;
         this.state = state;
+        this.isMain = isMain;
     }
 
     public AddressDTO(Address address) {
@@ -40,6 +43,7 @@ public class AddressDTO implements Serializable {
         this.number = address.getNumber();
         this.city = address.getCity();
         this.state = address.getState();
+        this.isMain = address.getMain();
     }
 
     public AddressDTO(Address address, Person person) {
@@ -93,5 +97,13 @@ public class AddressDTO implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public boolean getMain() {
+        return isMain;
+    }
+
+    public void setMain(boolean main) {
+        isMain = main;
     }
 }

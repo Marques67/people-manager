@@ -4,7 +4,9 @@ import com.example.peoplemanager.dto.AddressDTO;
 import com.example.peoplemanager.entities.Address;
 import com.example.peoplemanager.entities.Person;
 import com.example.peoplemanager.repositories.AddressRepository;
+import com.example.peoplemanager.services.exceptions.MultipleMainAdressesException;
 import com.example.peoplemanager.services.exceptions.ResourceNotFoundException;
+import com.example.peoplemanager.utils.UtilAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,7 +50,7 @@ public class AddressService {
     public AddressDTO insertNewAddress(Long personId, AddressDTO addressDTO) {
         Person person = personService.findPersonById(personId);
         Address address = new Address();
-        copyDtoToEntity(addressDTO, address);
+        copyDtoToEntity(addressDTO, address, person);
         address.setPerson(person);
         person.getAddress().add(address);
         address = addressRepository.save(address);
@@ -61,7 +63,7 @@ public class AddressService {
         try {
             Person person = personService.findPersonById(personId);
             Address address = person.getAddress().stream().filter(a -> a.getId().equals(addressId)).findFirst().get();
-            copyDtoToEntity(addressDTO, address);
+            copyDtoToEntity(addressDTO, address, person);
             addressRepository.save(address);
             return new AddressDTO(address, person);
         }
@@ -70,11 +72,16 @@ public class AddressService {
         }
     }
 
-    private void copyDtoToEntity(AddressDTO addressDTO, Address address) {
+    private void copyDtoToEntity(AddressDTO addressDTO, Address address, Person person) {
+        if (addressDTO.getMain()) {
+            UtilAddress.updateMainAddress(person);
+        }
+
         address.setStreet(addressDTO.getStreet());
         address.setCep(addressDTO.getCep());
         address.setNumber(addressDTO.getNumber());
         address.setCity(addressDTO.getCity());
         address.setState(addressDTO.getState());
+        address.setMain(addressDTO.getMain());
     }
 }

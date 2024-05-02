@@ -31,7 +31,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"fullName\": \"João Luiz\",\r\n    \"birthday\": \"2001-08-14T10:00:00Z\",\r\n    \"address\": [\r\n        {\r\n            \"street\": \"Rua Five\",\r\n            \"cep\": \"21921-225\",\r\n            \"number\": 25,\r\n            \"city\": \"Buzios\",\r\n            \"state\": \"Rio de Janeiro\"\r\n        },\r\n        {\r\n            \"street\": \"Rua Six\",\r\n            \"cep\": \"21921-226\",\r\n            \"number\": 26,\r\n            \"city\": \"Arraial do Cabo\",\r\n            \"state\": \"Rio de Janeiro\"\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"fullName\": \"João Luiz\",\r\n    \"birthday\": \"2001-08-14T10:00:00Z\",\r\n    \"address\": [\r\n        {\r\n            \"street\": \"Rua Five\",\r\n            \"cep\": \"21921-225\",\r\n            \"number\": 25,\r\n            \"city\": \"Buzios\",\r\n            \"state\": \"Rio de Janeiro\",\r\n            \"main\": true\r\n        },\r\n        {\r\n            \"street\": \"Rua Six\",\r\n            \"cep\": \"21921-226\",\r\n            \"number\": 26,\r\n            \"city\": \"Arraial do Cabo\",\r\n            \"state\": \"Rio de Janeiro\",\r\n            \"main\": true\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -49,7 +49,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"street\": \"Rua Ten\",\r\n        \"cep\": \"21921-210\",\r\n        \"number\": 210,\r\n        \"city\": \"Rio de Janeiro\",\r\n        \"state\": \"Rio de Janeiro\"\r\n    }",
+					"raw": "{\r\n        \"street\": \"Rua Ten\",\r\n        \"cep\": \"21921-210\",\r\n        \"number\": 210,\r\n        \"city\": \"Rio de Janeiro\",\r\n        \"state\": \"Rio de Janeiro\",\r\n        \"main\": true\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -67,7 +67,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"fullName\": \"Alex Andrade Neto\",\r\n    \"birthday\": \"2020-07-14T10:00:00Z\",\r\n    \"address\": [\r\n        {\r\n            \"street\": \"Rua One\",\r\n            \"cep\": \"21921-221\",\r\n            \"number\": 21,\r\n            \"city\": \"Rio de Janeiro\",\r\n            \"state\": \"Rio de Janeiro\"\r\n        },\r\n        {\r\n            \"street\": \"Rua Two\",\r\n            \"cep\": \"21921-222\",\r\n            \"number\": 22,\r\n            \"city\": \"Duque de caxias\",\r\n            \"state\": \"Rio de Janeiro\"\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"fullName\": \"Alex Andrade Neto\",\r\n    \"birthday\": \"2020-07-14T10:00:00Z\",\r\n    \"address\": [\r\n        {\r\n            \"street\": \"Rua Three\",\r\n            \"cep\": \"21921-223\",\r\n            \"number\": 33,\r\n            \"city\": \"Duque de caxias\",\r\n            \"state\": \"Rio de Janeiro\",\r\n            \"main\": true\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -85,7 +85,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"street\": \"Rua Ten\",\r\n        \"cep\": \"21921-210\",\r\n        \"number\": 210,\r\n        \"city\": \"Teste\",\r\n        \"state\": \"Roraima\"\r\n    }",
+					"raw": "{\r\n        \"street\": \"Rua Ten\",\r\n        \"cep\": \"21921-210\",\r\n        \"number\": 210,\r\n        \"city\": \"Teste\",\r\n        \"state\": \"Roraima\",\r\n        \"main\": true\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -110,7 +110,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/address/1"
+				"url": "http://localhost:8080/address/1/2"
 			},
 			"response": []
 		}

@@ -1,5 +1,6 @@
 package com.example.peoplemanager.controllers.exceptions;
 
+import com.example.peoplemanager.services.exceptions.MultipleMainAdressesException;
 import com.example.peoplemanager.services.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,5 +24,17 @@ public class ResourceExceptionHandler {
 			err.setMessage(e.getMessage());
 			err.setPath(request.getRequestURI());
 			return ResponseEntity.status(status).body(err);		
+	}
+
+	@ExceptionHandler(MultipleMainAdressesException.class)
+	public ResponseEntity<StandardError> multipleMainAddresses(MultipleMainAdressesException e, HttpServletRequest request) {
+		HttpStatus status = HttpStatus.CONFLICT;
+		StandardError err = new StandardError();
+		err.setTimestamp(formatDate());
+		err.setStatus(status.value());
+		err.setError("Conflict");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
+		return ResponseEntity.status(status).body(err);
 	}
 }
